@@ -1,0 +1,12 @@
+# Patient Service Configuration
+server:
+  port: 8084
+
+spring:
+  application:
+    name: patient-service
+
+# Service URLs
+service:
+  user-data-url: http://user-data-service:8082
+  auth-service-url: http://auth-service:8081

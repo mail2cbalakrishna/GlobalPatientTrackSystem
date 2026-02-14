@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.globalpatienttrack.shared.config.SharedLibraryAutoConfiguration

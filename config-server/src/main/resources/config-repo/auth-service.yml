@@ -1,0 +1,18 @@
+# Auth Service Configuration
+server:
+  port: 8081
+
+spring:
+  application:
+    name: auth-service
+
+# Service URLs
+service:
+  user-data-url: http://user-data-service
+
+# OAuth2 Token Configuration
+oauth2:
+  access-token:
+    expiration: 3600  # 1 hour in seconds
+  refresh-token:
+    expiration: 2592000  # 30 days in seconds

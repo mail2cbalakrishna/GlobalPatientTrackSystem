@@ -1,0 +1,216 @@
+{
+  "info": {
+    "name": "2. User Data Service (Port 8082)",
+    "description": "User management and data operations",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{adminToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "item": [
+    {
+      "name": "Register New User (Public)",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"newpatient\",\n  \"password\": \"Patient@123\",\n  \"email\": \"newpatient@test.com\",\n  \"firstName\": \"New\",\n  \"lastName\": \"Patient\",\n  \"role\": \"PATIENT\"\n}"
+        },
+        "url": {
+          "raw": "{{userDataServiceUrl}}/users/register",
+          "host": ["{{userDataServiceUrl}}"],
+          "path": ["users", "register"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get User by Username (Public)",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{userDataServiceUrl}}/users/username/patient1",
+          "host": ["{{userDataServiceUrl}}"],
+          "path": ["users", "username", "patient1"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get User by ID (Admin/Owner)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{userDataServiceUrl}}/users/11",
+          "host": ["{{userDataServiceUrl}}"],
+          "path": ["users", "11"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Users by Role - DOCTOR",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{doctorToken}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{userDataServiceUrl}}/users/role/DOCTOR",
+          "host": ["{{userDataServiceUrl}}"],
+          "path": ["users", "role", "DOCTOR"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get All Doctors (Doctor/Admin)",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{doctorToken}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{userDataServiceUrl}}/users/doctors",
+          "host": ["{{userDataServiceUrl}}"],
+          "path": ["users", "doctors"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get All Patients (Doctor/Admin)",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{doctorToken}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{userDataServiceUrl}}/users/patients",
+          "host": ["{{userDataServiceUrl}}"],
+          "path": ["users", "patients"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Active Users (Admin)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{userDataServiceUrl}}/users/active",
+          "host": ["{{userDataServiceUrl}}"],
+          "path": ["users", "active"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update User (Admin)",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"patient1\",\n  \"email\": \"patient1.updated@test.com\",\n  \"firstName\": \"Patient\",\n  \"lastName\": \"One Updated\",\n  \"role\": \"PATIENT\"\n}"
+        },
+        "url": {
+          "raw": "{{userDataServiceUrl}}/users/11",
+          "host": ["{{userDataServiceUrl}}"],
+          "path": ["users", "11"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Activate User (Admin)",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "url": {
+          "raw": "{{userDataServiceUrl}}/users/11/activate",
+          "host": ["{{userDataServiceUrl}}"],
+          "path": ["users", "11", "activate"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Deactivate User (Admin)",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "url": {
+          "raw": "{{userDataServiceUrl}}/users/11/deactivate",
+          "host": ["{{userDataServiceUrl}}"],
+          "path": ["users", "11", "deactivate"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Delete User (Admin)",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{userDataServiceUrl}}/users/13",
+          "host": ["{{userDataServiceUrl}}"],
+          "path": ["users", "13"]
+        }
+      },
+      "response": []
+    }
+  ]
+}

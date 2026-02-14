@@ -1,0 +1,45 @@
+server:
+  port: 8086
+
+spring:
+  application:
+    name: lab-service
+  datasource:
+    url: jdbc:mysql://mysql:3306/global_patient_track_db
+    username: root
+    password: password
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://service-discovery:8761/eureka/
+    fetch-registry: true
+    register-with-eureka: true
+  instance:
+    prefer-ip-address: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: always
+
+logging:
+  level:
+    com.globalpatienttrack: DEBUG
+
+# Service URLs
+service:
+  user-data-url: http://user-data-service:8082
+  patient-url: http://patient-service:8084

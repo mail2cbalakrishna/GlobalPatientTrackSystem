@@ -1,0 +1,11 @@
+# User Data Service Configuration
+server:
+  port: 8082
+
+spring:
+  application:
+    name: user-data-service
+
+# Service URLs
+service:
+  auth-service-url: http://auth-service:8081

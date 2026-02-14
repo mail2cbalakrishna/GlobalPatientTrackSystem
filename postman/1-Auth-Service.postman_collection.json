@@ -1,0 +1,157 @@
+{
+  "info": {
+    "name": "1. Auth Service (Port 8081)",
+    "description": "OAuth2.0 Authentication with UUID tokens",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Login as Patient",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "if (pm.response.code === 200) {",
+              "    var jsonData = pm.response.json();",
+              "    pm.environment.set('patientToken', jsonData.accessToken);",
+              "    console.log('Patient token saved:', jsonData.accessToken.substring(0, 20) + '...');",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"patient1\",\n  \"password\": \"Patient@123\"\n}"
+        },
+        "url": {
+          "raw": "{{authServiceUrl}}/auth/login",
+          "host": ["{{authServiceUrl}}"],
+          "path": ["auth", "login"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Login as Doctor",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "if (pm.response.code === 200) {",
+              "    var jsonData = pm.response.json();",
+              "    pm.environment.set('doctorToken', jsonData.accessToken);",
+              "    console.log('Doctor token saved:', jsonData.accessToken.substring(0, 20) + '...');",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"doctor1\",\n  \"password\": \"Doctor@123\"\n}"
+        },
+        "url": {
+          "raw": "{{authServiceUrl}}/auth/login",
+          "host": ["{{authServiceUrl}}"],
+          "path": ["auth", "login"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Login as Admin",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "if (pm.response.code === 200) {",
+              "    var jsonData = pm.response.json();",
+              "    pm.environment.set('adminToken', jsonData.accessToken);",
+              "    console.log('Admin token saved:', jsonData.accessToken.substring(0, 20) + '...');",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"admin\",\n  \"password\": \"Admin@123\"\n}"
+        },
+        "url": {
+          "raw": "{{authServiceUrl}}/auth/login",
+          "host": ["{{authServiceUrl}}"],
+          "path": ["auth", "login"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Validate Token",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{authServiceUrl}}/auth/validate?token={{patientToken}}",
+          "host": ["{{authServiceUrl}}"],
+          "path": ["auth", "validate"],
+          "query": [
+            {
+              "key": "token",
+              "value": "{{patientToken}}"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Logout",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{patientToken}}"
+          }
+        ],
+        "url": {
+          "raw": "{{authServiceUrl}}/auth/logout",
+          "host": ["{{authServiceUrl}}"],
+          "path": ["auth", "logout"]
+        }
+      },
+      "response": []
+    }
+  ]
+}

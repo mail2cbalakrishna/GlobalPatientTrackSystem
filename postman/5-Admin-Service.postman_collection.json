@@ -1,0 +1,191 @@
+{
+  "info": {
+    "name": "5. Admin Service (Port 8085)",
+    "description": "Administrative portal with full system access",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{adminToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "item": [
+    {
+      "name": "Get Dashboard Data",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{adminServiceUrl}}/admin/dashboard",
+          "host": ["{{adminServiceUrl}}"],
+          "path": ["admin", "dashboard"]
+        },
+        "description": "Get system overview statistics"
+      },
+      "response": []
+    },
+    {
+      "name": "Get All Users",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{adminServiceUrl}}/admin/users",
+          "host": ["{{adminServiceUrl}}"],
+          "path": ["admin", "users"]
+        },
+        "description": "Get all active users in the system"
+      },
+      "response": []
+    },
+    {
+      "name": "Get All Patients",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{adminServiceUrl}}/admin/users/patients",
+          "host": ["{{adminServiceUrl}}"],
+          "path": ["admin", "users", "patients"]
+        },
+        "description": "Get all patients"
+      },
+      "response": []
+    },
+    {
+      "name": "Get All Doctors",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{adminServiceUrl}}/admin/users/doctors",
+          "host": ["{{adminServiceUrl}}"],
+          "path": ["admin", "users", "doctors"]
+        },
+        "description": "Get all doctors"
+      },
+      "response": []
+    },
+    {
+      "name": "Get User by ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{adminServiceUrl}}/admin/users/11",
+          "host": ["{{adminServiceUrl}}"],
+          "path": ["admin", "users", "11"]
+        },
+        "description": "Get specific user by ID"
+      },
+      "response": []
+    },
+    {
+      "name": "Create New Patient",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"patient2\",\n  \"password\": \"Patient@123\",\n  \"email\": \"patient2@test.com\",\n  \"firstName\": \"Patient\",\n  \"lastName\": \"Two\",\n  \"role\": \"PATIENT\"\n}"
+        },
+        "url": {
+          "raw": "{{adminServiceUrl}}/admin/users",
+          "host": ["{{adminServiceUrl}}"],
+          "path": ["admin", "users"]
+        },
+        "description": "Create a new patient user"
+      },
+      "response": []
+    },
+    {
+      "name": "Create New Doctor",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"doctor2\",\n  \"password\": \"Doctor@123\",\n  \"email\": \"doctor2@hospital.com\",\n  \"firstName\": \"Doctor\",\n  \"lastName\": \"Two\",\n  \"role\": \"DOCTOR\"\n}"
+        },
+        "url": {
+          "raw": "{{adminServiceUrl}}/admin/users",
+          "host": ["{{adminServiceUrl}}"],
+          "path": ["admin", "users"]
+        },
+        "description": "Create a new doctor user"
+      },
+      "response": []
+    },
+    {
+      "name": "Activate User",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "url": {
+          "raw": "{{adminServiceUrl}}/admin/users/11/activate",
+          "host": ["{{adminServiceUrl}}"],
+          "path": ["admin", "users", "11", "activate"]
+        },
+        "description": "Activate a deactivated user"
+      },
+      "response": []
+    },
+    {
+      "name": "Deactivate User",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "url": {
+          "raw": "{{adminServiceUrl}}/admin/users/11/deactivate",
+          "host": ["{{adminServiceUrl}}"],
+          "path": ["admin", "users", "11", "deactivate"]
+        },
+        "description": "Deactivate a user (soft delete)"
+      },
+      "response": []
+    },
+    {
+      "name": "Delete User",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{adminServiceUrl}}/admin/users/13",
+          "host": ["{{adminServiceUrl}}"],
+          "path": ["admin", "users", "13"]
+        },
+        "description": "Permanently delete a user"
+      },
+      "response": []
+    },
+    {
+      "name": "Get System Statistics",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{adminServiceUrl}}/admin/stats",
+          "host": ["{{adminServiceUrl}}"],
+          "path": ["admin", "stats"]
+        },
+        "description": "Get detailed system statistics"
+      },
+      "response": []
+    }
+  ]
+}

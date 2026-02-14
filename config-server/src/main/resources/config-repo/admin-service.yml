@@ -1,0 +1,12 @@
+# Admin Service Configuration
+server:
+  port: 8085
+
+spring:
+  application:
+    name: admin-service
+
+# Service URLs
+service:
+  user-data-url: http://user-data-service
+  auth-service-url: http://auth-service:8081

@@ -1,0 +1,183 @@
+{
+  "info": {
+    "name": "3. Patient Service (Port 8084)",
+    "description": "Patient health data and history management",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{patientToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "item": [
+    {
+      "name": "Get My Profile (Patient)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{patientServiceUrl}}/patient/profile",
+          "host": ["{{patientServiceUrl}}"],
+          "path": ["patient", "profile"]
+        },
+        "description": "Get current authenticated patient's profile"
+      },
+      "response": []
+    },
+    {
+      "name": "Get Patient Profile by ID (Doctor/Admin)",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{doctorToken}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{patientServiceUrl}}/patient/profile/11",
+          "host": ["{{patientServiceUrl}}"],
+          "path": ["patient", "profile", "11"]
+        },
+        "description": "Get specific patient's profile by ID"
+      },
+      "response": []
+    },
+    {
+      "name": "Get My History (Patient)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{patientServiceUrl}}/patient/history",
+          "host": ["{{patientServiceUrl}}"],
+          "path": ["patient", "history"]
+        },
+        "description": "Get current authenticated patient's medical history"
+      },
+      "response": []
+    },
+    {
+      "name": "Get Patient History by ID (Doctor/Admin)",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{doctorToken}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{patientServiceUrl}}/patient/history/11",
+          "host": ["{{patientServiceUrl}}"],
+          "path": ["patient", "history", "11"]
+        },
+        "description": "Get specific patient's medical history"
+      },
+      "response": []
+    },
+    {
+      "name": "Add Patient History (Doctor)",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{doctorToken}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"patientId\": 11,\n  \"diagnosis\": \"Regular health checkup\",\n  \"treatment\": \"No treatment required\",\n  \"visitDate\": \"2025-10-28\",\n  \"notes\": \"Patient is healthy, vitals are normal\"\n}"
+        },
+        "url": {
+          "raw": "{{patientServiceUrl}}/patient/history",
+          "host": ["{{patientServiceUrl}}"],
+          "path": ["patient", "history"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update Patient History (Doctor)",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{doctorToken}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"patientId\": 11,\n  \"diagnosis\": \"Updated diagnosis\",\n  \"treatment\": \"Updated treatment plan\",\n  \"visitDate\": \"2025-10-28\",\n  \"notes\": \"Updated medical notes\"\n}"
+        },
+        "url": {
+          "raw": "{{patientServiceUrl}}/patient/history/1",
+          "host": ["{{patientServiceUrl}}"],
+          "path": ["patient", "history", "1"]
+        },
+        "description": "Update existing medical history record"
+      },
+      "response": []
+    },
+    {
+      "name": "Delete Patient History (Admin)",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{adminToken}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{patientServiceUrl}}/patient/history/1",
+          "host": ["{{patientServiceUrl}}"],
+          "path": ["patient", "history", "1"]
+        }
+      },
+      "response": []
+    }
+  ]
+}

@@ -1,0 +1,117 @@
+{
+  "info": {
+    "name": "4. Doctor Service (Port 8083)",
+    "description": "Doctor portal and patient management",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{doctorToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "item": [
+    {
+      "name": "Get My Doctor Profile",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{doctorServiceUrl}}/doctor/profile/12",
+          "host": ["{{doctorServiceUrl}}"],
+          "path": ["doctor", "profile", "12"]
+        },
+        "description": "Get doctor profile by ID (replace 12 with actual doctor ID)"
+      },
+      "response": []
+    },
+    {
+      "name": "Get All Patients",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{doctorServiceUrl}}/doctor/patients",
+          "host": ["{{doctorServiceUrl}}"],
+          "path": ["doctor", "patients"]
+        },
+        "description": "Get list of all patients"
+      },
+      "response": []
+    },
+    {
+      "name": "Get Patient Details by ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{doctorServiceUrl}}/doctor/patient/11",
+          "host": ["{{doctorServiceUrl}}"],
+          "path": ["doctor", "patient", "11"]
+        },
+        "description": "Get specific patient's details"
+      },
+      "response": []
+    },
+    {
+      "name": "Get All Doctors",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{doctorServiceUrl}}/doctor/all",
+          "host": ["{{doctorServiceUrl}}"],
+          "path": ["doctor", "all"]
+        },
+        "description": "Get list of all doctors in the system"
+      },
+      "response": []
+    },
+    {
+      "name": "Search Doctors by Name",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{doctorServiceUrl}}/doctor/search?name=doctor",
+          "host": ["{{doctorServiceUrl}}"],
+          "path": ["doctor", "search"],
+          "query": [
+            {
+              "key": "name",
+              "value": "doctor",
+              "description": "Search term for doctor's name"
+            }
+          ]
+        },
+        "description": "Search for doctors by name (firstName or lastName)"
+      },
+      "response": []
+    },
+    {
+      "name": "Search Doctor by ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{doctorServiceUrl}}/doctor/search?id=12",
+          "host": ["{{doctorServiceUrl}}"],
+          "path": ["doctor", "search"],
+          "query": [
+            {
+              "key": "id",
+              "value": "12",
+              "description": "Doctor ID to search for"
+            }
+          ]
+        },
+        "description": "Search for doctor by their ID"
+      },
+      "response": []
+    }
+  ]
+}
